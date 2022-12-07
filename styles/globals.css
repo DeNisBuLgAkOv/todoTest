@@ -103,6 +103,10 @@ input ::placeholder{
   color: red;
 }
 
+span{
+  color: rgb(159, 151, 151);
+}
+
 .text{
   margin-top: -5px;
   margin-left: 10px ;
@@ -120,11 +124,27 @@ input ::placeholder{
 .menu span{
   display: block;
   margin-left: 10px;
-  color: rgb(159, 151, 151);
   min-width:20px;
   cursor: pointer;
 }
 
+.active{
+  color: chartreuse;
+}
+
+.sum{
+  color: rgb(159, 151, 151);
+}
+span{
+  margin-left: 5px;
+  color: rgb(159, 151, 151);
+  cursor: pointer;
+}
+
+.done{
+  text-decoration:line-through;
+  color:red;
+}
 
 
 

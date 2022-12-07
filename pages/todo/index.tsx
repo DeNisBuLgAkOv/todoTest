@@ -20,7 +20,11 @@ function Todo() {
   }
 
     let [tasks,setTasks] = useState<Array<newTaskType>>([])
+    let [filter,setFilter]=useState<string>('all')
 
+    const changeFilter =(filter:string)=>{
+        setFilter(filter)
+     }
     const addTask=(title:string)=>{
         if(title) {
             const newTask:newTaskType = {
@@ -29,6 +33,21 @@ function Todo() {
             setTasks([...tasks, newTask])
         }
     }
+    const deleteTaskHandler =(id:string)=>{
+      setTasks(tasks.filter(t => t.id !== id))
+    }
+
+    const changeStatusTask =(id:string,isDone:boolean)=>{
+      setTasks(tasks.map(t => t.id === id ? {...t,isDone: isDone} : t))
+    }
+
+  let newTask =[...tasks]
+  if(filter ==="active"){
+    newTask=  tasks.filter(t=>t.isDone === false )
+  }
+  else if(filter ==="completed"){
+    newTask = tasks.filter(t=>t.isDone === true )
+  }
 
   return (
 
@@ -38,15 +57,15 @@ function Todo() {
         </div>
         <AddItemForm addTask={addTask}/>
         <div className="list">
-            {  
-               tasks.map(task => { return <Task task={task}/> })
+            {
+              newTask.map(task => { return <Task key={task.id} deleteTask = {deleteTaskHandler}  changeStatusTask={changeStatusTask} task={task}/> })
             }
         </div>
 
         <div className={"menu"}>
-          <span>All</span>
-          <span>Active</span>
-          <span>Completed</span>
+          <span className={filter ==="all" ? "active": ''} onClick={()=>changeFilter('all')} >All</span>
+          <span className={filter ==="active" ? "active": ''}  onClick={()=>changeFilter('active')} >Active</span>
+          <span className={filter ==="completed" ? "active": ''}  onClick={()=>changeFilter('completed')} >Completed</span>
         </div>
       <button  onClick={()=>navigateTodo('/')}>Move back</button>
     </div>
