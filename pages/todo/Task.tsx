@@ -3,7 +3,7 @@ import {newTaskType} from "./index";
 
 type TaskType={
     task:newTaskType
-    changeStatusTask:(id:string,isDone:boolean)=>void
+    changeStatusTask: (id:string, isDone:boolean) => void
     deleteTask: (id:string) => void
 }
 
@@ -23,7 +23,7 @@ function Task(props:TaskType):JSX.Element{
             <label key={props.task.id} className={"label"}>
                 <input onChange={onStatusHandler} checked={props.task.isDone}  type={"checkbox"} className={"checkbox"}/>
                 <span className={"fake"}></span>
-                <span  className={props.task.isDone ===true? "text done":"text"  }>{props.task.title}</span>
+                <span  className={props.task.isDone ===true? "text done":"text"}>{props.task.title}</span>
             </label>
           </div>
         <div className={"delete_task"} onClick={deleteHandlerTask}>x</div>

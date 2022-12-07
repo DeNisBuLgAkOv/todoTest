@@ -1,15 +1,15 @@
 import React, {ChangeEvent, useState} from "react";
 
 type AddItemFormProps={
-    addTask:(title:string)=>void
+    addTask: (title:string) => void
 }
 
 function AddItemForm(props:AddItemFormProps){
 
     let [value,setValue] = useState<string>('')
 
-    const changeTaskTitle =(event:ChangeEvent<HTMLInputElement>)=>{
-        setValue( event.currentTarget.value)
+    const changeTaskTitle = (event:ChangeEvent<HTMLInputElement>) => {
+        setValue(event.currentTarget.value)
     }
 
     const onClickAddHandler = () => {
